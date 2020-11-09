@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Informasi Seputar Sepak Bola"/>
+    <title>Detail Team</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6a1b9a"/>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- Navigasi -->
+    <nav class="purple darken-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" id="logo-container">Info B<span class="material-icons" style="padding-top: 17px;">sports_soccer</span>la</a>
+            <a href="./index.html" class="sidenav-trigger">
+              <i class="material-icons">arrow_back</i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container" id="body-content"></div>
+    <div hidden id="spinner"></div>
+    
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large blue" id="save">
+        <i class="large material-icons">favorite</i>
+      </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/idb.js"></script>
+    <script src="js/db.js"></script>
+
+    <!-- Script -->
+    <script>
+      // REGISTER SERVICE WORKER
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker
+            .register("service-worker.js")
+            .then(function() {
+              console.log("Pendaftaran ServiceWorker berhasil");
+            })
+            .catch(function() {
+              console.log("Pendaftaran ServiceWorker gagal");
+            });
+        });
+      } else {
+        console.log("ServiceWorker belum didukung browser ini.");
+      }
+
+      // Add Favorite
+      document.addEventListener("DOMContentLoaded", function() {
+        let urlParams = new URLSearchParams(window.location.search);
+        let isFromSaved = urlParams.get("favorite");
+        let btnSave = document.getElementById("save");
+
+        if (isFromSaved) {
+          btnSave.style.display = 'none';
+          getSavedTeamById();
+        }
+          let item = getTeamById();
+          
+          btnSave.onclick = function() {
+            item.then(function(team) {
+              saveForLater(team);
+            });
+          };
+      });
+    </script>
+</body>
+</html>
