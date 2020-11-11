@@ -1,2 +1,6 @@
 firebase hosting: https://submission-2-c361e.web.app
+<<<<<<< HEAD
 github : https://github.com/ariefbudimann20/info-bola
+=======
+github: https://github.com/ariefbudimann20/info-bola
+>>>>>>> 762f34b09dfaf9e97f4e33e31355d48c943f1764
