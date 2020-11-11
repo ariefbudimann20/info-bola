@@ -32,7 +32,6 @@ workbox.precaching.precacheAndRoute([
   { url: '/js/db.js', revision: '1'},
   { url: '/js/idb.js', revision: '1'},
   { url: '/push.js', revision: '1'},
-  { url: '/node_modules/sweetalert2/dist/sweetalert2.all.min.js', revision: '1'},
   { url: '/images/background.jpg', revision: '1'},
   { url: '/images/favicon.ico', revision: '1'},
   { url: '/images/logo_36x36.png', revision: '1'},
@@ -42,6 +41,8 @@ workbox.precaching.precacheAndRoute([
   { url: '/images/logo_144x144.png', revision: '1'},
   { url: '/images/logo_192x192.png', revision: '1'},
   { url: '/images/logo_512x512.png', revision: '1'},
+  { url: '/images/custom_icon.png', revision: '1'},
+  { url: 'https://cdn.jsdelivr.net/npm/sweetalert2@10', revision: '1'},
 ],{
     ignoreUrlParametersMatching: [/.*/]
   });

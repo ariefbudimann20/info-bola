@@ -8,7 +8,7 @@
     <link rel="icon" href="images/favicon.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#6a1b9a"/>
-    
+    <link rel="apple-touch-icon" href="images/custom_icon.png">
 
     <!-- Style -->
     <link rel="stylesheet" href="css/materialize.min.css">
@@ -93,22 +93,24 @@
               return;
             }
 
-            if (('PushManager' in window)) {
-                navigator.serviceWorker.getRegistration().then(function(registration) {
-                    registration.pushManager.subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey: urlBase64ToUint8Array("BAZSWTYLA_jVXgVUpGYXm9f_WC-iTtIhJsIcIvR8zFg1B76OZbz9VWFURL0POsMKapi_J5ho5Ulj1pdsbBtz514")
-                    }).then(function(subscribe) {
-                        console.log('Berhasil melakukan subscribe dengan endpoint: ', subscribe.endpoint);
-                        console.log('Berhasil melakukan subscribe dengan p256dh key: ', btoa(String.fromCharCode.apply(
-                            null, new Uint8Array(subscribe.getKey('p256dh')))));
-                        console.log('Berhasil melakukan subscribe dengan auth key: ', btoa(String.fromCharCode.apply(
-                            null, new Uint8Array(subscribe.getKey('auth')))));
-                    }).catch(function(e) {
-                        console.error('Tidak dapat melakukan subscribe ', e.message);
-                    });
-                });
-            }
+            navigator.serviceWorker.ready.then(() => {
+              if (('PushManager' in window)) {
+                  navigator.serviceWorker.getRegistration().then(function(registration) {
+                      registration.pushManager.subscribe({
+                          userVisibleOnly: true,
+                          applicationServerKey: urlBase64ToUint8Array("BAZSWTYLA_jVXgVUpGYXm9f_WC-iTtIhJsIcIvR8zFg1B76OZbz9VWFURL0POsMKapi_J5ho5Ulj1pdsbBtz514")
+                      }).then(function(subscribe) {
+                          console.log('Berhasil melakukan subscribe dengan endpoint: ', subscribe.endpoint);
+                          console.log('Berhasil melakukan subscribe dengan p256dh key: ', btoa(String.fromCharCode.apply(
+                              null, new Uint8Array(subscribe.getKey('p256dh')))));
+                          console.log('Berhasil melakukan subscribe dengan auth key: ', btoa(String.fromCharCode.apply(
+                              null, new Uint8Array(subscribe.getKey('auth')))));
+                      }).catch(function(e) {
+                          console.error('Tidak dapat melakukan subscribe ', e.message);
+                      });
+                  });
+              }
+            });
           });
         }
       }
