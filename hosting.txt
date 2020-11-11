@@ -1,2 +1,0 @@
-firebase hosting: https://submission-2-c361e.web.app
-github: https://github.com/ariefbudimann20/info-bola
