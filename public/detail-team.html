@@ -67,12 +67,13 @@
         let isFromSaved = urlParams.get("favorite");
         let btnSave = document.getElementById("save");
 
+        let item;
         if (isFromSaved) {
           btnSave.style.display = 'none';
-          getSavedTeamById();
+          item = getSavedTeamById();
+        } else {
+          item = getTeamById();
         }
-          let item = getTeamById();
-          
           btnSave.onclick = function() {
             item.then(function(team) {
               saveForLater(team);
